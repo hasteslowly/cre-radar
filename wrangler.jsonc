@@ -1,0 +1,19 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "cre-radar",
+  "main": "src/worker.js",
+  "compatibility_date": "2026-09-01",
+  // Static dashboard files. Requests that don't match a file fall through to the Worker.
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "cre-radar",
+      "database_id": "822281a1-acfd-4c0a-a4c5-02d6ff465eee"
+    }
+  ],
+  "observability": { "enabled": true }
+}

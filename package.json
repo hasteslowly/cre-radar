@@ -1,0 +1,15 @@
+{
+  "name": "cre-radar",
+  "private": true,
+  "scripts": {
+    "seed:demo": "python3 pipeline/build_dataset.py --demo --out db/seed.sql",
+    "seed:ffiec": "python3 pipeline/build_dataset.py --raw data/raw --out db/seed.sql",
+    "db:local": "wrangler d1 execute cre-radar --local --file=db/schema.sql && wrangler d1 execute cre-radar --local --file=db/seed.sql",
+    "db:remote": "wrangler d1 execute cre-radar --remote --file=db/schema.sql && wrangler d1 execute cre-radar --remote --file=db/seed.sql",
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "devDependencies": {
+    "wrangler": "^4.40.0"
+  }
+}
