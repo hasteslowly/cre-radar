@@ -15,5 +15,7 @@
       "database_id": "822281a1-acfd-4c0a-a4c5-02d6ff465eee"
     }
   ],
+  // Cloudflare Workers AI, used for the analyst note.
+  "ai": { "binding": "AI" },
   "observability": { "enabled": true }
 }

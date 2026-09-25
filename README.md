@@ -12,6 +12,7 @@ The Federal Reserve's June 2026 Supervision and Regulation Report says CRE delin
 - **Distribution**: how concentration is spread across banks, filterable by state.
 - **Watchlist**: sortable table of the most concentrated banks.
 - **Bank detail**: CRE composition, 13-quarter concentration trend, and a stress simulator.
+- **Analyst note**: an AI-written summary of a bank's concentration and stress result, drafted by Cloudflare Workers AI. The model only writes the words: every number comes from the database or the stress model, and the Worker checks each number in the note against those facts and flags any it can't match.
 
 ## How it's built
 
@@ -25,6 +26,7 @@ Browser ──> Cloudflare Worker ──> D1 (SQLite at the edge)
 |---|---|
 | `pipeline/build_dataset.py` | Parses FFIEC Call Report bulk files (or generates demo data) and writes `db/seed.sql` |
 | `db/schema.sql` | D1 tables: `banks`, `financials`, `meta` |
+| `src/analyst.js` | Builds the fact sheet for one bank, calls Workers AI, and checks the note's numbers |
 | `src/worker.js` | API: `/api/meta`, `/api/screen?quarter=`, `/api/bank/:rssd`, with edge caching |
 | `public/index.html` | Dashboard: ECharts visualizations and the stress model |
 | `wrangler.jsonc` | Cloudflare configuration |
